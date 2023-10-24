@@ -9,7 +9,7 @@ attributes:
   controller.devfile.io/storage-type: per-user
 components:
   - container:
-      image: node:18-alpine
+      image: registry.redhat.io/devspaces/udi-rhel8
       endpoints:
         - exposure: public
           name: nodejs
