@@ -1,0 +1,34 @@
+schemaVersion: 2.2.0
+metadata:
+  name: demo-nodejs-app
+components:
+  - container:
+      image: node:18-alpine
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: http
+          targetPort: 3000
+    name: runtime
+commands:
+  - id: install
+    exec:
+      commandLine: npm install
+      component: runtime
+      workingDir: ${PROJECTS_ROOT}
+      group:
+        kind: build
+  - id: run
+    exec:
+      commandLine: node app.js
+      component: runtime
+      workingDir: ${PROJECTS_ROOT}
+      group:
+        kind: run
+  - id: install-aws-cli
+    exec:
+      commandLine: 'pip3 install awscli --upgrade'
+      component: runtime
+events:
+  postStart:
+    - install-aws-cli
