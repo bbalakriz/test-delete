@@ -1,6 +1,12 @@
 schemaVersion: 2.2.0
 metadata:
   name: demo-nodejs-app
+attributes:
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: crw
+  controller.devfile.io/scc: container-build
+  controller.devfile.io/storage-type: per-user
 components:
   - container:
       image: node:18-alpine
